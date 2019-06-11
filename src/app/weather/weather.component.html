@@ -1,0 +1,7 @@
+<div *ngFor="let city of cities">
+  <div (click)="selectCity(city)">{{ city }}</div>
+</div>
+
+<div *ngIf="currentWeather">
+  {{ JSON.stringify(currentWeather) }}
+</div>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'weather-app';
+  constructor(private router: Router, private userService: UserService) {
+    const user = userService.user;
+    if (user) {
+      const callbackUrl = location.pathname.replace('/', '');
+      router.navigateByUrl(callbackUrl === 'login' ? 'weather' : callbackUrl);
+    } else {
+      router.navigateByUrl('login');
+    }
+  }
 }

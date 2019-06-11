@@ -1,0 +1,17 @@
+<div class="login-page">
+  <mat-card class="login-card">
+    <form id="login-form" name="loginForm" #loginForm="ngForm" novalidate>
+      <mat-form-field>
+        <input matInput name="login" ngModel #login="ngModel" placeholder="login" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" ngModel #password="ngModel" name="password" placeholder="password" required>
+      </mat-form-field>
+    </form>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="onSubmit(loginForm)" [disabled]="!loginForm.valid">
+        Sign in
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
