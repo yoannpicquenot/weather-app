@@ -10,6 +10,7 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   constructor(private router: Router, private userService: UserService) {
     const user = userService.user;
+    // NOTE: J'aurais pu faire un interceptor aussi, mais c'est plus simple de passer par ce composant
     if (user) {
       const callbackUrl = location.pathname.replace('/', '');
       router.navigateByUrl(callbackUrl === 'login' ? 'weather' : callbackUrl);
