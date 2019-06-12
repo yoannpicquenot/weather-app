@@ -9,10 +9,12 @@ import { LoginModule } from './login/login.module';
 import { WeatherModule } from './weather/weather.module';
 
 import { AppComponent } from './app.component';
+import { ProgressPipe } from './progress.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProgressPipe,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,7 @@ import { AppComponent } from './app.component';
     LoginModule,
     WeatherModule,
   ],
+  exports: [],
   providers: [CookieService],
   bootstrap: [AppComponent]
 })

@@ -15,7 +15,10 @@ export class WeatherComponent implements OnInit {
 
   private JSON = JSON;
 
-  constructor(private weatherService: WeatherService, private userService: UserService) {}
+  constructor(
+    private weatherService: WeatherService,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     this.cities = this.userService.user.listeVilleFavortie;
@@ -24,6 +27,8 @@ export class WeatherComponent implements OnInit {
 
   selectCity(city: string) {
     this.selectedCity = city;
-    this.weatherService.getCityWeather(city).subscribe(response => this.currentWeather = response);
+    this.weatherService
+      .getCityWeather(city)
+      .subscribe(response => this.currentWeather = response);
   }
 }

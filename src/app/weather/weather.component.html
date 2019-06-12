@@ -1,7 +1,35 @@
-<div *ngFor="let city of cities">
-  <div (click)="selectCity(city)">{{ city }}</div>
-</div>
-
-<div *ngIf="currentWeather">
-  {{ JSON.stringify(currentWeather) }}
+<div class="weather-page">
+  <ul class="cities">
+    <li class="city" *ngFor="let city of cities" [ngClass]="{'active': city === selectedCity}">
+      <a (click)="selectCity(city)">{{ city }}</a>
+    </li>
+  </ul>
+  <mat-card *ngIf="currentWeather" class="weather-card">
+    <mat-card-title>
+      <h2>
+        {{ currentWeather.name }}
+      </h2>
+      <mat-card-subtitle>
+        <h2>
+          {{ currentWeather.sys.country }}
+        </h2>
+      </mat-card-subtitle>
+    </mat-card-title>
+    <mat-card-content class="weather-card__content">
+      <mat-grid-list cols="2" rowHeight="1:1">
+        <mat-grid-tile>
+          <div>{{ currentWeather.main.temp | convert }}</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div>{{ currentWeather.weather[0].description | titlecase }}</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div>{{ currentWeather.main.humidity }}%</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div>Wind {{ currentWeather.wind.speed }}m/s</div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
 </div>

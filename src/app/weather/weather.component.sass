@@ -1,0 +1,27 @@
+.weather-page
+    height: 100vh
+    with: 100%
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin: 0 10%
+
+    .cities
+        list-style-type: none
+        padding: 0
+        .city
+            cursor: pointer
+            &.active
+                border-bottom: 1px solid black
+
+    .weather-card
+        width: 500px
+        overflow: hidden
+        padding: 0
+
+        mat-card-title
+            padding: 16px
+
+        mat-grid-tile
+            font-size: 1.5rem
+            border: 1px solid rgba(0,0,0,.07)
