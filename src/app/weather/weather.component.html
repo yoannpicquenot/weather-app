@@ -1,11 +1,19 @@
 <div class="weather-page">
   <ul class="cities">
+    <li>
+      <h1>
+        Favorites
+      </h1>
+    </li>
     <li class="city" *ngFor="let city of cities" [ngClass]="{'active': city === selectedCity}">
       <a (click)="selectCity(city)">{{ city }}</a>
     </li>
   </ul>
   <mat-card *ngIf="currentWeather" class="weather-card">
-    <mat-card-title class="blue-sky">
+    <mat-card-title [ngClass]="{
+      'blue-sky': currentWeather.weather[0].main !== 'Rain',
+      'rainy-sky': currentWeather.weather[0].main === 'Rain'
+    }">
       <div>
         <h2>
           {{ currentWeather.name }}
@@ -16,7 +24,13 @@
           </h2>
         </mat-card-subtitle>
       </div>
-      <div class="sun-cloud"></div>
+      <div class="weather-pic">
+        <div [ngClass]="{
+          'sun': currentWeather.weather[0].main === 'Clear',
+          'rainy-cloud': currentWeather.weather[0].main === 'Rain',
+          'white-cloud': currentWeather.weather[0].main === 'Clouds'
+        }"></div>
+      </div>
     </mat-card-title>
     <mat-card-content class="weather-card__content">
       <mat-grid-list cols="2" rowHeight="1:1">

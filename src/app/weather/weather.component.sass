@@ -9,15 +9,26 @@
     .cities
         list-style-type: none
         padding: 0
+        animation: fade-in 3s ease-in-out forwards
+
         .city
-            cursor: pointer
-            &.active
-                border-bottom: 1px solid black
+            font-size: 2rem
+
+            &.active::after
+              content: " "
+              height: 5px
+              width: 100%
+              display: block
+              background: black
+              animation: anim-active-link .5s ease-in-out 0s forwards
+
+            a
+              cursor: pointer
 
     .weather-card
         width: 500px
-        overflow: hidden
         padding: 0
+        animation: fade-up-in 1s ease-in-out forwards
 
         mat-card-title
             padding: 16px
@@ -34,11 +45,11 @@
   height: 50px
   width: 50px
   border-radius: 50%
-  background: lightgrey
+  background: #7f8c8d
   display: inline-block
   transform: rotate(180deg) translate(-100%)
   filter: drop-shadow(-12px -3px 4px rgba(0, 0, 0, 0.4))
-  box-shadow: 40px 0px 0px 0px lightgrey, 80px 0px 0px 0px lightgrey, 40px 25px 0px 0px lightgrey
+  box-shadow: 40px 0px 0px 0px #7f8c8d, 80px 0px 0px 0px #7f8c8d, 40px 25px 0px 0px #7f8c8d
 
 .white-cloud
   height: 50px
@@ -58,7 +69,13 @@
   box-shadow: 0px 0px 10px 0px rgba(243,156,18 ,1)
 
 .blue-sky
-  background: linear-gradient(#3498db, lightblue)
+  background: linear-gradient(#3498db, lightblue, white)
+
+.rainy-sky
+  background: linear-gradient(#7f8c8d, #95a5a6, white)
+
+.weather-pic
+  animation: anim-weather-pic 3s ease-in-out 0s infinite
 
 .sun-cloud
   &::after
@@ -69,6 +86,7 @@
     background: white
     display: inline-block
     transform: rotate(180deg) translate(-100%, -0%)
+    opacity: .9
     filter: drop-shadow(-12px -3px 4px rgba(0, 0, 0, 0.2))
     box-shadow: 40px 0px 0px 0px white, 80px 0px 0px 0px white, 40px 25px 0px 0px white
   &::before
@@ -80,4 +98,46 @@
     border-radius: 50%
     background: #f1c40f
     box-shadow: 0px 0px 10px 0px #f39c12
-    z-index: 1px
+
+.rainy-cloud
+  height: 50px
+  width: 50px
+  border-radius: 50%
+  background: #7f8c8d
+  display: inline-block
+  transform: rotate(180deg) translate(-100%)
+  filter: drop-shadow(-12px -3px 4px rgba(0, 0, 0, 0.4))
+  box-shadow: 40px 0px 0px 0px #7f8c8d, 80px 0px 0px 0px #7f8c8d, 40px 25px 0px 0px #7f8c8d
+
+  &:before
+    content: " "
+    transform: rotate(90deg) translate(-50%, -20px)
+    box-shadow: 0px 0px 2px 0px white, 0px -15px 0px 0px white, 0px -30px 0px 0px white, 0px -45px 0px 0px white, 0px -60px 0px 0px white
+    display: block
+    height: 1px
+    width: 20px
+
+@keyframes anim-weather-pic
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(1.05)
+
+@keyframes anim-active-link
+  0%
+    width: 0%
+
+@keyframes fade-up-in
+  0%
+    opacity: 0
+    transform: translateY(15%)
+
+@keyframes fade-in
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+@media screen and (min-width: 1600px)
+  .weather-page
+    margin: 0 25%
