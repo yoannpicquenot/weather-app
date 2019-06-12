@@ -15,6 +15,7 @@ export class DatabaseService {
     password: 'aa'
   }, {
     listeVilleFavortie: [
+      'Lyon',
       'Rennes',
       'Paris',
       'Lille',

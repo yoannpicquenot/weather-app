@@ -5,15 +5,18 @@
     </li>
   </ul>
   <mat-card *ngIf="currentWeather" class="weather-card">
-    <mat-card-title>
-      <h2>
-        {{ currentWeather.name }}
-      </h2>
-      <mat-card-subtitle>
+    <mat-card-title class="blue-sky">
+      <div>
         <h2>
-          {{ currentWeather.sys.country }}
+          {{ currentWeather.name }}
         </h2>
-      </mat-card-subtitle>
+        <mat-card-subtitle>
+          <h2>
+            {{ currentWeather.sys.country }}
+          </h2>
+        </mat-card-subtitle>
+      </div>
+      <div class="sun-cloud"></div>
     </mat-card-title>
     <mat-card-content class="weather-card__content">
       <mat-grid-list cols="2" rowHeight="1:1">
