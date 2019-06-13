@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WeatherService {
-  private apiUrl: string = "http://api.openweathermap.org/data/2.5/weather?appid=3d32e5ea54d83c5d53afbeab1e165307";
+  private apiUrl = 'http://api.openweathermap.org/data/2.5/weather?appid=3d32e5ea54d83c5d53afbeab1e165307';
 
-  constructor(private $http: HttpClient) {}
+  constructor(private $http: HttpClient) { }
 
-  getCityWeather(city: string) : Observable<Object> {
+  getCityWeather(city: string): Observable<object> {
     return this.$http.get(`${this.apiUrl}&q=${city},fr`);
   }
 }

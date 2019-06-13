@@ -3,20 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { WeatherComponent } from './weather/weather.component';
+import { CitiesComponent } from './cities/cities.component';
 
 const routes: Routes = [{
   path: '',
   pathMatch: 'full',
-  redirectTo: 'weather'
+  redirectTo: 'cities'
 }, {
   path: 'login',
   component: LoginComponent
 }, {
-  path: 'weather',
-  component: WeatherComponent,
+  path: 'cities',
+  component: CitiesComponent,
 }, {
-    path: '**',
-    redirectTo: 'weather',
+  path: '**',
+  redirectTo: 'cities',
 }];
 
 @NgModule({

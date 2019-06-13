@@ -1,0 +1,44 @@
+.cities-page
+    height: 100vh
+    width: 100%
+    display: flex
+    justify-content: space-between
+    align-items: center
+    overflow: hidden
+
+    .cities
+      width: 30%
+      ul
+        padding: 0 25%
+        list-style-type: none
+        animation: fade-in 1s ease-in-out forwards
+
+        .city
+          width: 100%
+          font-size: 2rem
+          margin-bottom: 10px
+          cursor: pointer
+          position: relative
+
+          a
+            margin-left: 10px
+
+          &.active::after
+            content: " "
+            height: 100%
+            width: 5px
+            display: block
+            background: black
+            animation: anim-active-link .5s ease-in-out 0s forwards
+            position: absolute
+            top: 0
+
+    app-weather
+        width: 70%
+
+
+@media screen and (max-width: 1000px)
+    .cities-page
+        display: block
+        overflow: auto
+        height: calc(100vh - 100px)

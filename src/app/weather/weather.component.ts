@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { WeatherService } from '../services/weather.service';
 import { UserService } from '../services/user.service';
 
@@ -9,10 +9,10 @@ import { UserService } from '../services/user.service';
 })
 export class WeatherComponent implements OnInit {
 
-  private cities = [];
-  private selectedCity = null;
-  private currentWeather = null;
+  @Input() private city = null;
+  private imageUrl: string;
 
+  private currentWeather: object;
   private JSON = JSON;
 
   constructor(
@@ -21,14 +21,14 @@ export class WeatherComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.cities = this.userService.user.listeVilleFavortie;
-    this.selectCity(this.cities[0]);
+  }
+
+  ngOnChanges({ city: { currentValue } }) {
+    return this.weatherService
+      .getCityWeather(currentValue)
+      .subscribe(response => this.currentWeather = response);
   }
 
   selectCity(city: string) {
-    this.selectedCity = city;
-    this.weatherService
-      .getCityWeather(city)
-      .subscribe(response => this.currentWeather = response);
   }
 }

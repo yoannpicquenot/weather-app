@@ -22,6 +22,9 @@ import { WeatherComponent } from './weather.component';
     MatCardModule,
     MatDividerModule,
     MatGridListModule
+  ],
+  exports: [
+    WeatherComponent
   ]
 })
 export class WeatherModule { }

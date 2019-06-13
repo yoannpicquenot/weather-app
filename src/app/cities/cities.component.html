@@ -1,0 +1,15 @@
+<div class="cities-page">
+  <div class="cities">
+    <ul>
+      <li>
+        <h1>
+          Favorites
+        </h1>
+      </li>
+      <li class="city" *ngFor="let city of cities" [ngClass]="{'active': city === selectedCity}">
+        <a (click)="selectCity(city)">{{ city }}</a>
+      </li>
+    </ul>
+  </div>
+  <app-weather [city]="selectedCity"></app-weather>
+</div>

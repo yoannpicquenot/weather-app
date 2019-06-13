@@ -6,3 +6,27 @@ body
     margin: 0
     padding: 0
     font-family: Roboto
+
+.fade-in
+    animation: fade-in 1s ease-in-out forwards
+
+@keyframes anim-weather-pic
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(1.05)
+
+@keyframes anim-active-link
+  0%
+    width: 0%
+
+@keyframes fade-in-from-right
+  0%
+    opacity: 0
+    transform: translateX(100%)
+
+@keyframes fade-in
+  0%
+    opacity: 0
+  100%
+    opacity: 1

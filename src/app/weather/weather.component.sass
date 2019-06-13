@@ -1,45 +1,34 @@
-.weather-page
-    height: 100vh
-    with: 100%
+.weather-card
+  width: 100%
+  height: 100vh
+  padding: 0
+  animation: fade-in-from-right 1s ease-in-out forwards
+  display: flex
+  flex-direction: column
+
+  *
+    font-size: 5rem
+
+  mat-card-title
     display: flex
-    justify-content: space-between
+    flex-direction: row
     align-items: center
-    margin: 0 10%
+    justify-content: center
 
-    .cities
-        list-style-type: none
-        padding: 0
-        animation: fade-in 3s ease-in-out forwards
+    .weather-pic
+      margin: 32px
 
-        .city
-            font-size: 2rem
+  .weather-card__content
+    height: inherit
+    display: flex
+    flex-flow: row wrap
+    justify-content: space-around
 
-            &.active::after
-              content: " "
-              height: 5px
-              width: 100%
-              display: block
-              background: black
-              animation: anim-active-link .5s ease-in-out 0s forwards
-
-            a
-              cursor: pointer
-
-    .weather-card
-        width: 500px
-        padding: 0
-        animation: fade-up-in 1s ease-in-out forwards
-
-        mat-card-title
-            padding: 16px
-            display: flex
-            justify-content: space-around
-            align-items: center
-            margin-bottom: 0
-
-        mat-grid-tile
-            font-size: 1.5rem
-            border: 1px solid rgba(0,0,0,.07)
+    .weather-info
+      width: 50%
+      display: flex
+      justify-content: center
+      align-items: center
 
 .grey-cloud
   height: 50px
@@ -117,27 +106,18 @@
     height: 1px
     width: 20px
 
-@keyframes anim-weather-pic
-  0%
-    transform: scale(1)
-  50%
-    transform: scale(1.05)
+@media screen and (max-width: 1000px)
+  .weather-card
+    *
+      font-size: 3rem
 
-@keyframes anim-active-link
-  0%
-    width: 0%
+@media screen and (max-width: 619px)
+  .weather-card
+    mat-card-title
+      min-height: 230px
 
-@keyframes fade-up-in
-  0%
-    opacity: 0
-    transform: translateY(15%)
+    *
+      font-size: 2rem
 
-@keyframes fade-in
-  0%
-    opacity: 0
-  100%
-    opacity: 1
-
-@media screen and (min-width: 1600px)
-  .weather-page
-    margin: 0 25%
+    .weather-pic *
+      margin-right: 15px

@@ -7,14 +7,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import { WeatherModule } from './weather/weather.module';
+import { CitiesModule } from './cities/cities.module';
+import { ProfileModule } from './profile/profile.module';
 
 import { AppComponent } from './app.component';
-import { ProgressPipe } from './progress.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProgressPipe,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +22,8 @@ import { ProgressPipe } from './progress.pipe';
     BrowserAnimationsModule,
     LoginModule,
     WeatherModule,
+    CitiesModule,
+    ProfileModule
   ],
   exports: [],
   providers: [CookieService],

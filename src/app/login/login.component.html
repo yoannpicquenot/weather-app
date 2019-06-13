@@ -1,17 +1,31 @@
 <div class="login-page">
-  <mat-card class="login-card">
+  <mat-card class="login-card fade-in">
+    <mat-card-title>
+      <h4>
+        Weather app
+      </h4>
+    </mat-card-title>
     <form id="login-form" name="loginForm" #loginForm="ngForm" novalidate>
       <mat-form-field>
-        <input matInput name="login" ngModel #login="ngModel" placeholder="login" required>
+        <input matInput name="login" ngModel #login="ngModel" placeholder="email" type="email" required>
       </mat-form-field>
       <mat-form-field>
         <input matInput type="password" ngModel #password="ngModel" name="password" placeholder="password" required>
       </mat-form-field>
-    </form>
-    <mat-card-actions align="end">
       <button mat-raised-button color="primary" (click)="onSubmit(loginForm)" [disabled]="!loginForm.valid">
         Sign in
       </button>
-    </mat-card-actions>
+      <div class="errors">
+        <div *ngIf="login.touched && login.errors && login.errors.required" class="error">
+          Email is required
+        </div>
+        <div *ngIf="password.touched && password.errors && password.errors.required">
+          Password is required
+        </div>
+        <div *ngFor="let error of errors">
+          {{ error }}
+        </div>
+      </div>
+    </form>
   </mat-card>
 </div>

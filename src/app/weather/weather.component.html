@@ -1,52 +1,33 @@
-<div class="weather-page">
-  <ul class="cities">
-    <li>
-      <h1>
-        Favorites
-      </h1>
-    </li>
-    <li class="city" *ngFor="let city of cities" [ngClass]="{'active': city === selectedCity}">
-      <a (click)="selectCity(city)">{{ city }}</a>
-    </li>
-  </ul>
-  <mat-card *ngIf="currentWeather" class="weather-card">
-    <mat-card-title [ngClass]="{
-      'blue-sky': currentWeather.weather[0].main !== 'Rain',
-      'rainy-sky': currentWeather.weather[0].main === 'Rain'
-    }">
-      <div>
-        <h2>
-          {{ currentWeather.name }}
-        </h2>
-        <mat-card-subtitle>
-          <h2>
-            {{ currentWeather.sys.country }}
-          </h2>
-        </mat-card-subtitle>
-      </div>
-      <div class="weather-pic">
-        <div [ngClass]="{
+<mat-card *ngIf="currentWeather" class="weather-card mat-elevation-z4">
+  <mat-card-title [ngClass]="{
+    'blue-sky': currentWeather.weather[0].main === 'Clear' || currentWeather.weather[0].main === 'Clouds',
+    'rainy-sky': currentWeather.weather[0].main !== 'Clear' && currentWeather.weather[0].main !== 'Clouds'
+  }">
+    <div class="weather-pic">
+      <div [ngClass]="{
           'sun': currentWeather.weather[0].main === 'Clear',
           'rainy-cloud': currentWeather.weather[0].main === 'Rain',
           'white-cloud': currentWeather.weather[0].main === 'Clouds'
         }"></div>
-      </div>
-    </mat-card-title>
-    <mat-card-content class="weather-card__content">
-      <mat-grid-list cols="2" rowHeight="1:1">
-        <mat-grid-tile>
-          <div>{{ currentWeather.main.temp | convert }}</div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <div>{{ currentWeather.weather[0].description | titlecase }}</div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <div>{{ currentWeather.main.humidity }}%</div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <div>Wind {{ currentWeather.wind.speed }}m/s</div>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card-content>
-  </mat-card>
-</div>
+    </div>
+    <div class="city-name">
+      <h2>
+        {{ currentWeather.name }}, {{ currentWeather.sys.country }}
+      </h2>
+    </div>
+  </mat-card-title>
+  <mat-card-content class="weather-card__content">
+    <div class="weather-info">
+      {{ currentWeather.main.temp | convert }}
+    </div>
+    <div class="weather-info">
+      {{ currentWeather.weather[0].description | titlecase }}
+    </div>
+    <div class="weather-info">
+      {{ currentWeather.main.humidity }}%
+    </div>
+    <div class="weather-info">
+      {{ currentWeather.wind.speed }}m/s
+    </div>
+  </mat-card-content>
+</mat-card>

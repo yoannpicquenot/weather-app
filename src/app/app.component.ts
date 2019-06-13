@@ -1,5 +1,5 @@
 import { Component, NgModule } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -8,14 +8,18 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  userIsConnected: boolean;
+
   constructor(private router: Router, private userService: UserService) {
-    const user = userService.user;
-    // NOTE: J'aurais pu faire un interceptor aussi, mais c'est plus simple de passer par ce composant
-    if (user) {
+    if (userService.user) {
+      this.userIsConnected = true;
       const callbackUrl = location.pathname.replace('/', '');
-      router.navigateByUrl(callbackUrl === 'login' ? 'weather' : callbackUrl);
+      router.navigateByUrl(callbackUrl === 'login' ? 'cities' : callbackUrl);
     } else {
+      this.userIsConnected = false;
       router.navigateByUrl('login');
     }
+
+    this.userService.isConnected.subscribe(status => this.userIsConnected = status);
   }
 }
